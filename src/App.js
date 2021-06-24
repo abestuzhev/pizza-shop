@@ -10,7 +10,12 @@ function App() {
       <div className="content">
         <div className="container">
           <div className="content__top">
-            <Categories/>
+            <Categories 
+            items={[
+              'Все','Мясные','Вегетарианская','Гриль','Острые','Закрытые'
+            ]}
+            onClickItem={(item)=> console.log(item)}
+            />
             <Sort/>
           </div>
           <h2 className="content__title">Все пиццы</h2>
