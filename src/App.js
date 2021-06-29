@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
 import Categories from "./components/Categories";
 import Header from "./components/Header";
 import PizzaBlock from "./components/PizzaBlock";
@@ -10,6 +12,18 @@ const sortArray = [
 ];
 
 function App() {
+
+  const [pizzas, setPizzas] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/db.json').then(({data}) => {
+      setPizzas(data.pizzas)
+    })
+    
+  }, [])
+
+  console.log(pizzas);
+
   return (
     <div className="wrapper">
       <Header />
@@ -26,7 +40,8 @@ function App() {
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
             {
-              Array(10).fill(0).map((elem, index) => <PizzaBlock key={index}/>)
+              
+              pizzas.map((elem, index) => <PizzaBlock {...elem} key={elem.id}/>)
             }
           </div>
         </div>
