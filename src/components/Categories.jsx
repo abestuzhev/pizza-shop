@@ -1,12 +1,17 @@
 import {useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCategory } from '../redux/action/category';
 
 const Categories = ({items}) => {
 
-    const [itemIndex, setItemIndex] = useState(0);
+    // const [itemIndex, setItemIndex] = useState(0);
+
+    const itemIndex = useSelector(state => state.category.active)
+    const dispatch = useDispatch()
 
 
     const onClickItem = (item, index) => {
-        setItemIndex(index);
+        dispatch(setCategory(index));
     }
 
     return (
