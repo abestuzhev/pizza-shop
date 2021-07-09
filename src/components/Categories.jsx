@@ -17,13 +17,13 @@ const Categories = ({items}) => {
     return (
         <>
         <div className="categories">
-            <ul>
+            <div className="categories-list">
             {
                 items.map((item, index) => {
-                    return <li onClick={()=> onClickItem(item, index)} className={itemIndex === index ? "active" : ""} key={`${item}_${index}`}>{item}</li>
+                    return <div onClick={()=> onClickItem(item, index)} className={itemIndex === index ? "categories-list__link active" : "categories-list__link"} key={`${item}_${index}`}>{item}</div>
                 })
             }
-            </ul>
+            </div>
         </div>
         </>
     )
