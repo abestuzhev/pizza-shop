@@ -1,38 +1,39 @@
-import Categories from "./components/Categories";
-import Header from "./components/Header";
-import PizzaBlock from "./components/PizzaBlock";
-import Sort from "./components/Sort";
+import {Route, Switch, useRouteMatch, useHistory, useParams} from "react-router-dom";
+import Home from "./components/Home";
+import Modal from "./components/Modal";
+import ProductInfo from "./components/Product/ProductInfo";
 
-const sortArray = [
-  {name:'популярности'}, 
-  {name:'цене'}, 
-  {name:'алфавиту'}
-];
 
 function App() {
+
+
+  const history = useHistory();
+
   return (
-    <div className="wrapper">
-      <Header />
-      <div className="content">
-        <div className="container">
-          <div className="content__top">
-            <Categories 
-            items={[
-              'Все','Мясные','Вегетарианская','Гриль','Острые','Закрытые'
-            ]}
-            />
-            <Sort items={sortArray}/>
-          </div>
-          <h2 className="content__title">Все пиццы</h2>
-          <div className="content__items">
-            {
-              Array(10).fill(0).map((elem, index) => <PizzaBlock key={index}/>)
-            }
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    <>
+    
+
+      <Route path="/" >
+        <Home /> 
+      </Route>
+
+      <Route
+          path="/product/:id"
+          children={({match}) => {
+            console.log('matchRouter', match);
+              return (
+                  Boolean(match) &&
+                  <Modal history={history} size="small" closeBtn={true}>
+                      <ProductInfo/>
+                  </Modal>
+              )
+          }}
+        />
+    </>
+
+    
+  
+  )
 }
 
 export default App;

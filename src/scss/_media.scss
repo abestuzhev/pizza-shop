@@ -1,0 +1,164 @@
+@media (max-width: 1300px) {
+    .content__top {
+        display: block;
+    }
+
+    .categories {
+        margin-bottom: 20px;
+    }
+
+    .sort {
+        display: inline-block;
+    }
+
+    .wrapper {
+        margin: 0;
+        width: 100%;
+        padding: 16px 30px;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .product-list__item {
+        width: 33.3333%;
+    }
+
+    .wrapper {
+        padding: 0 16px 30px;
+    }
+}
+
+@media (max-width: 760px) {
+    .product-list__item {
+        width: 50%;
+    }
+}
+
+@media (max-width: 580px) {
+
+    .content {
+        padding: 20px 0;
+    }
+
+    .header {
+        padding: 20px 0 0;
+        border: none;
+    }
+    .header__logo p {
+        display: none;
+    }
+
+    .header__cart span {
+        white-space: nowrap;
+    }
+
+    .header__cart .button {
+        padding: 4px 14px
+    }
+
+    .product-list__item {
+        width: 100%;
+        padding: 10px 0 20px;
+    }
+
+    .pizza-block__selector ul li {
+        padding: 4px;
+        font-weight: 400;
+        font-size: 13px;
+    }
+
+    .pizza-block__title {
+        text-align: left;
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 400;
+        margin-bottom: 8px;
+    }
+
+    .pizza-block__body {
+        flex: 1;
+    }
+
+    .pizza-block__price {
+        font-size: 16px;
+        line-height: 20px;
+        white-space: nowrap;
+    }
+
+    .button {
+        border-radius: 30px;
+        padding: 4px 9px;
+        min-width: auto;
+    }
+
+    .button--add span {
+        font-size: 15px;
+    }
+
+
+    .pizza-block__img {
+        width: 120px;
+        min-width: 120px;
+        height: 120px;
+    }
+
+    .pizza-block__bottom {
+        margin-top: 8px;
+    }
+
+    
+    .pizza-block__img div {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+
+    .pizza-block {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
+
+
+    .categories-list__link {
+        padding: 5px 17px;
+        border-radius: 30px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 420px) {
+
+
+    .categories-list__link {
+        padding: 5px 10px;
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+    .pizza-block__img {
+        width: 100px;
+        min-width: 100px;
+        height: 100px;
+    }
+
+    .button {
+        padding: 4px 7px
+    }
+
+    .button--add span {
+        font-size: 13px;
+    }
+    .button--add i {
+        width: 16px;
+        height: 16px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+}
