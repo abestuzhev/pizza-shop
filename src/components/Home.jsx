@@ -14,6 +14,10 @@ const sortArray = [
   {name:'алфавиту'}
 ];
 
+const categoriesArray = [
+  'Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'
+];
+
 const Home = () => {
 
 
@@ -37,9 +41,7 @@ const Home = () => {
         <div className="container">
           <div className="content__top">
             <Categories
-              items={[
-                'Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'
-              ]}
+              items={categoriesArray}
             />
             <Sort items={sortArray} />
           </div>

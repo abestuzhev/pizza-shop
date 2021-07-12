@@ -1,8 +1,8 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategory } from '../redux/action/category';
 
-const Categories = ({items}) => {
+const Categories = React.memo(({items}) => {
 
     // const [itemIndex, setItemIndex] = useState(0);
 
@@ -13,6 +13,8 @@ const Categories = ({items}) => {
     const onClickItem = (item, index) => {
         dispatch(setCategory(index));
     }
+
+    console.log('CATEGORIES RERENDER');
 
     return (
         <>
@@ -27,6 +29,6 @@ const Categories = ({items}) => {
         </div>
         </>
     )
-}
+})
 
 export default Categories;

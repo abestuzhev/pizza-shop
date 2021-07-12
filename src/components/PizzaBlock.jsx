@@ -57,7 +57,7 @@ const PizzaBlock = ({name, types, sizes, id}) => {
 			<div className="product-list__item">
 				<div className="pizza-block">
 					<div className="pizza-block__img">
-						<div style={{ width: '100%', height: 280, background: '#eee', borderRadius: '500px', marginBottom: 20 }}
+						<div style={{ width: 250, height: 250, background: '#eee', borderRadius: '500px', marginBottom: 20 }}
 						onClick = {showProductPopup}></div>
 					</div>
 					<div className="pizza-block__body">
