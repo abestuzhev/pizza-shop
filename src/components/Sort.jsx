@@ -1,9 +1,13 @@
 import {useState, useRef, useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {setFilters} from '../redux/action/filters';
 
 const Sort = ({items}) => {
 
+  const dispatch = useDispatch()
   const [visiblePopup, setVisiblePopup] = useState(false);
-  const [currentValue, setCurrentValue] = useState(null);
+  const currentType = useSelector(({filters}) => filters.sortBy.type);
+  const activeType = items ? items.find(obj => obj.type === currentType).name : "";
 
   const toggleVisiblePopup = () => {
     setVisiblePopup(!visiblePopup);
@@ -18,8 +22,8 @@ const Sort = ({items}) => {
       }
   }
 
-  const selectionSortItem = (index) => {
-    setCurrentValue(index);
+  const selectionSortItem = (type) => {
+    dispatch(setFilters(type));
     setVisiblePopup(false)
   }
   
@@ -45,7 +49,7 @@ const Sort = ({items}) => {
             />
           </svg>
           <b>Сортировка по:</b>
-          <span onClick={toggleVisiblePopup}>популярности</span>
+          <span onClick={toggleVisiblePopup}>{activeType}</span>
         </div>
         {visiblePopup &&
           <div className="sort__popup">
@@ -55,8 +59,8 @@ const Sort = ({items}) => {
                 items.map((obj, index) => {
                   return (
                     <li 
-                    onClick={() => selectionSortItem(index)}
-                    className={currentValue === index ? 'active' : ""} 
+                    onClick={() => selectionSortItem(obj)}
+                    className={currentType === obj.type ? 'active' : ""} 
                     key={`${obj.name}_${index}`}>
                       {obj.name}
                     </li>

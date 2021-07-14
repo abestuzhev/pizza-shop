@@ -9,13 +9,13 @@ import Sort from "./Sort";
 import { pizzasAction } from "./../redux/action/pizzas";
 
 const sortArray = [
-  {name:'популярности'}, 
-  {name:'цене'}, 
-  {name:'алфавиту'}
+  {name:'популярности', type: "popular", order: 'desc'}, 
+  {name:'цене', type: "price", order: 'desc'}, 
+  {name:'алфавиту', type: "name", order: 'asc'}
 ];
 
 const categoriesArray = [
-  'Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'
+  'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'
 ];
 
 const Home = () => {
@@ -24,12 +24,14 @@ const Home = () => {
   const dispatch = useDispatch();
   const pizzas = useSelector(({ pizzas }) => pizzas.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
+  const {category, sortBy} = useSelector(({ filters }) => filters);
+
   useEffect(() => {
     axios.get('http://localhost:3000/db.json').then(({ data }) => {
       dispatch(pizzasAction(data.pizzas))
     })
 
-  }, [])
+  }, [category, sortBy])
 
   
 
