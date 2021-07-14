@@ -6,7 +6,7 @@ import Header from "./Header";
 import PizzaBlock from "./PizzaBlock";
 import Loader from "./Loader";
 import Sort from "./Sort";
-import { pizzasAction } from "./../redux/action/pizzas";
+import { fetchPizzas } from "./../redux/action/pizzas";
 
 const sortArray = [
   {name:'популярности', type: "popular", order: 'desc'}, 
@@ -27,9 +27,8 @@ const Home = () => {
   const {category, sortBy} = useSelector(({ filters }) => filters);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/db.json').then(({ data }) => {
-      dispatch(pizzasAction(data.pizzas))
-    })
+    console.log('rerender home');
+    dispatch(fetchPizzas(category, sortBy));
 
   }, [category, sortBy])
 

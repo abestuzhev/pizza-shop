@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 // import classNames from 'classnames';
 
-const PizzaBlock = ({name, types, sizes, id}) => {
+const PizzaBlock = ({name, price, types, sizes, id}) => {
 
 
 	// const param = useParams();
@@ -89,7 +89,7 @@ const PizzaBlock = ({name, types, sizes, id}) => {
 							</ul>
 						</div>
 						<div className="pizza-block__bottom">
-							<div className="pizza-block__price">от 395 ₽</div>
+							<div className="pizza-block__price">от {price} ₽</div>
 							<Link className="button button--outline button--add" to={`/product/${id}`}>
 								<svg
 									width="12"

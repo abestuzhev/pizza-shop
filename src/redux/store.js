@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { categoryReducer } from './reducer/category';
 import filters from './reducer/filter';
 import { pizzasReducer } from './reducer/pizzas';
@@ -11,7 +12,7 @@ const rootReducer  = combineReducers({
 
 
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 window.s = store;
 
