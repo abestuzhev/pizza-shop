@@ -2,6 +2,7 @@ import {Route, Switch, useRouteMatch, useHistory, useParams} from "react-router-
 import Home from "./components/Home";
 import Modal from "./components/Modal";
 import ProductInfo from "./components/Product/ProductInfo";
+import Cart from "./components/Cart";
 
 import axios from "axios";
 import { pizzasAction } from "./redux/action/pizzas";
@@ -21,9 +22,11 @@ function App() {
     <>
     
 
-      <Route path="/" >
-        <Home /> 
+      
+      <Route path="/cart" exact>
+        <Cart /> 
       </Route>
+      
 
       <Route
           path="/product/:id"
@@ -36,6 +39,10 @@ function App() {
               )
           }}
         />
+
+        <Route path="/" exact>
+          <Home /> 
+        </Route>
     </>
 
     

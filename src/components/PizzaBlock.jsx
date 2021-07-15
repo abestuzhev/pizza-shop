@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { addToCart } from "../redux/action/cart";
 // import classNames from 'classnames';
 
-const PizzaBlock = ({name, price, types, sizes, id}) => {
+const PizzaBlock = ({name, price, types, sizes, id, addPizzaToCart}) => {
 
 
 	// const param = useParams();
@@ -16,8 +17,6 @@ const PizzaBlock = ({name, price, types, sizes, id}) => {
 		setActiveType(index)
 	}
 
-
-
 	const setClassNames = (index) => {
 		if(activeType === index){
 			return 'active';
@@ -29,7 +28,6 @@ const PizzaBlock = ({name, price, types, sizes, id}) => {
 			return '';
 		}		
 	}
-
 	
 	const onSelectSize = (index) => {
 		setActiveSize(sizesSelectors[index]);
@@ -49,7 +47,19 @@ const PizzaBlock = ({name, price, types, sizes, id}) => {
 
 	const showProductPopup = () => {
 		console.log("showProductPopup");
-	  }
+	}
+
+	const handlePizzaToCart = () => {
+		const obj = {
+			name,
+			id,
+			type: selectors[activeType],
+			size: activeSize
+		}
+		addPizzaToCart(obj)
+	}
+
+	
 
 
 	return (
@@ -90,7 +100,7 @@ const PizzaBlock = ({name, price, types, sizes, id}) => {
 						</div>
 						<div className="pizza-block__bottom">
 							<div className="pizza-block__price">от {price} ₽</div>
-							<Link className="button button--outline button--add" to={`/product/${id}`}>
+							<a className="button button--outline button--add" onClick={handlePizzaToCart}>
 								<svg
 									width="12"
 									height="12"
@@ -105,7 +115,7 @@ const PizzaBlock = ({name, price, types, sizes, id}) => {
 								</svg>
 								<span>Добавить</span>
 								<i>2</i>
-							</Link>
+							</a>
 						</div>
 					</div>
 					

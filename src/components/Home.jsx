@@ -7,6 +7,7 @@ import PizzaBlock from "./PizzaBlock";
 import Loader from "./Loader";
 import Sort from "./Sort";
 import { fetchPizzas } from "./../redux/action/pizzas";
+import { addToCart } from '../redux/action/cart';
 
 const sortArray = [
   {name:'популярности', type: "popular", order: 'desc'}, 
@@ -32,6 +33,11 @@ const Home = () => {
 
   }, [category, sortBy])
 
+  const addPizzaToCart = (obj) => {
+		
+		dispatch(addToCart(obj))
+	}
+
   
 
 
@@ -52,7 +58,7 @@ const Home = () => {
 
               !isLoaded
                 ? <Loader />
-                : pizzas.map((elem, index) => <PizzaBlock  {...elem} key={elem.id} />)
+                : pizzas.map((elem, index) => <PizzaBlock addPizzaToCart={addPizzaToCart}  {...elem} key={elem.id} />)
             }
           </div>
         </div>
