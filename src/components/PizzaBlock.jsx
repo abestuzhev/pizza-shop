@@ -56,6 +56,7 @@ const PizzaBlock = ({name, price, types, sizes, id, addPizzaToCart}) => {
 			type: selectors[activeType],
 			size: activeSize
 		}
+		console.log(obj);
 		addPizzaToCart(obj)
 	}
 

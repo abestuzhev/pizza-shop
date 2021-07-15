@@ -8,6 +8,35 @@ import axios from "axios";
 import { pizzasAction } from "./redux/action/pizzas";
 import { useDispatch, useSelector } from "react-redux";
 
+
+
+// const obj = {
+//   0: [
+//     {
+//       id: 13,
+//       name: 'name 0'
+//     },
+//     {
+//       id: 14,
+//       name: 'name 2'
+//     }
+//   ],
+//   1: [
+//     {
+//       id: 5,
+//       name: 'name 1'
+//     }
+//   ]
+// }
+
+// const arrItems = Object.values(obj);
+
+// console.log('arrItems', arrItems);
+
+
+// console.log([].concat.apply([], arrItems).length);
+
+
 function App() {
   const history = useHistory();
 
