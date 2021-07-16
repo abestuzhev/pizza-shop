@@ -52,6 +52,7 @@ const PizzaBlock = ({name, price, types, sizes, id, addPizzaToCart}) => {
 	const handlePizzaToCart = () => {
 		const obj = {
 			name,
+			price,
 			id,
 			type: selectors[activeType],
 			size: activeSize

@@ -331,5 +331,20 @@ body {
   }
 }
 
+.checkout {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-flow: row nowrap;
+
+  &-form {
+    width: 60%;
+  }
+
+  &-order {
+    width: 40%;
+  }
+}
+
 
 @import 'media';

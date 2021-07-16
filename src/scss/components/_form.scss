@@ -1,0 +1,165 @@
+.c-form {
+
+    &-adition {
+        background-color: #f3f3f3;
+        padding: 20px 30px;
+        border-radius: 8px;
+    }
+
+    &-box {
+        padding: 0 30px;
+    }
+
+    &-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 0 12px 0;
+        color: #444444de;
+    }
+
+    &-groupe {
+        margin-bottom: 30px;
+    }
+
+    &-item {
+        margin-bottom: 14px;
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &-grid {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        &__col {
+            &:nth-child(1) {
+                padding-right: 14px;
+            }
+            width: 50%;
+            
+        }
+    }
+}
+
+.c-input {
+    border-radius: 8px;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background: #fff;
+    border: 1px solid #bbbbbb;
+    overflow: hidden;
+    box-sizing: border-box;
+    font-family: "PT Sans", Helvetica, Arial, sans-serif;
+    line-height: 1.42857;
+    padding: 0px 16px;
+    max-width: 350px;
+
+    &-base {
+        border-radius: 8px;
+        position: relative;
+        width: 100%;
+        height: 64px;
+        background: #fff;
+        border: 1px solid #c7c7c7;
+        overflow: hidden;
+        box-sizing: border-box;
+        line-height: 1.42857;
+
+        input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 18px 0 0 20px;
+            height: 100%;
+            width: 100%;
+            outline: none;
+            background: transparent;
+            color: #4e4e4e;
+            border: none;
+            font-weight: bold;
+            z-index: 2;
+            box-sizing: border-box;
+            font-size: 16px;
+            line-height: inherit;
+        }
+
+        &__mask {
+            position: absolute;
+            top: 29px;
+            left: 20px;
+            font-weight: bold;
+            color: #d9d9d9;
+            z-index: 1;
+        }
+
+        label {
+            position: absolute;
+            transition: top 200ms, font-size 200ms;
+            top: 20px;
+            left: 0;
+            padding: 0 20px;
+            font-size: 16px;
+            color: #8c8c8c;
+            letter-spacing: .3px;
+            z-index: 2;
+            font-size: 14px;
+            top: 5px;
+        }
+        
+        &__link {
+            position: absolute;
+            z-index: 2;
+            font-size: 14px;
+            right: 16px;
+            font-weight: 500;
+            top: 34px;
+            line-height: 1;
+            cursor: pointer;
+            color: #ed1c24;
+        }
+        
+    }
+}
+
+
+
+.c-textarea {
+
+}
+
+.c-label {
+
+}
+
+.c-checkbox {
+
+}
+
+.c-radio {
+    
+}
+
+.c-btn {
+    font-size: 16px;
+    padding: 0 30px;
+    border: none;
+    outline: none;
+    background: #ed1c24;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 8px;
+    height: 48px;
+    line-height: 48px
+}

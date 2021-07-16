@@ -19,8 +19,10 @@ const cart = (state = initialState, action) => {
             }
 
             const arrItems = Object.values(objItems);
-            const totalCount = [].concat.apply([], arrItems).length;
-            const totalPrice = arrItems.reduce((sum, obj) => obj.price + sum, 0)
+            const allItems = [].concat.apply([], arrItems);
+            const totalCount = allItems.length;
+            const totalPrice = allItems.reduce((sum, obj) => obj.price + sum, 0)
+            console.log('totalPrice', totalPrice);
 
             return {
                 ...state,

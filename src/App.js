@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import Modal from "./components/Modal";
 import ProductInfo from "./components/Product/ProductInfo";
 import Cart from "./components/Cart";
+import Checkout from "./components/Сheckout/Checkout";
 
 import axios from "axios";
 import { pizzasAction } from "./redux/action/pizzas";
@@ -54,6 +55,10 @@ function App() {
       
       <Route path="/cart" exact>
         <Cart /> 
+      </Route>
+
+      <Route path="/checkout" exact>
+        <Checkout /> 
       </Route>
       
 
