@@ -1,6 +1,7 @@
 import React from 'react';
-import { useForm } from "react-hook-form";
+import { useForm, Controller  } from "react-hook-form";
 import { Link } from "react-router-dom";
+import Radio from './Radio';
 
 const Checkout = () => {
 
@@ -11,7 +12,7 @@ const Checkout = () => {
     address: "пр. Ленинградский, 38, кв. 1",
     timeDelivery: "Как можно скорее"
   }
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control } = useForm();
   const onSubmit = data => console.log(data);
 
   return (
@@ -21,7 +22,7 @@ const Checkout = () => {
           <div className="container">
             <div className="checkout">
               <div className="checkout-form">
-                <form className="c-form" action="" >
+                <form className="c-form" action="" onSubmit = {handleSubmit(onSubmit)}>
                   <div className="c-form-box">
                     <div className="c-form-groupe">
                       <div className="c-form-title">Данные гостя</div>
@@ -101,33 +102,24 @@ const Checkout = () => {
                     <div className="c-form-item">
                       <div className="c-form-grid">
                         <div className="c-form-grid__col">
-                          <div className="c-form-radio">
-                            <div className="c-form-radio__item">
-                              <input
-                                type="radio"
-                                className="c-radio"
-                                checked={true}
-                                {...register("pay")}
+                          <Controller
+                            control={control}
+                            name="pay"
+                            render={({
+                              field: { onChange, onBlur, value, name, ref },
+                              fieldState: { invalid, isTouched, isDirty, error },
+                              formState,
+                            }) => (
+                              <Radio
+                                onBlur={onBlur}
+                                onChange={onChange}
+                                inputRef={ref}
+                                defaultValue="gpay"
+                                value={[{name: 'Google Pay', value:"gpay"}, {name: 'Картой на сайте', value:"CARD"}, {name: 'Наличными', value:"CASH"}]}
                               />
-                              <label htmlFor="">Google Pay</label>
-                            </div>
-                            <div className="c-form-radio__item">
-                              <input
-                                type="radio"
-                                className="c-radio"
-                                {...register("pay")}
-                              />
-                              <label htmlFor="">Картой на сайте</label>
-                            </div>
-                            <div className="c-form-radio__item">
-                              <input
-                                type="radio"
-                                className="c-radio"
-                                {...register("pay")}
-                              />
-                              <label htmlFor="">Наличными</label>
-                            </div>
-                          </div>
+                            )}
+                          />
+                          
                         </div>
                       </div>
                     </div>
