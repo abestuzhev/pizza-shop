@@ -40,9 +40,9 @@ const Cart = () => {
 
                   <span>Вернуться назад</span>
                 </Link>
-                <div class="button pay-btn">
+                <Link to="/checkout" class="button pay-btn">
                   <span>Оформить заказ</span>
-                </div>
+                </Link>
               </div>
             </div>
           </div>

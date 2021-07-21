@@ -1,37 +1,38 @@
 import React, {useState} from 'react';
+import { useEffect } from 'react';
 
-function Radio({value, onChange, defaultValue, orientation, control, name, checked, ref}) {
+const RadioTest = React.forwardRef(({value, onChange, defaultValue, name, checked }, ref) => {
 
-    console.log(`orientation ${name}`, orientation);
-    console.log('name', name);
+    // console.log('name', name);
+    // console.log('defaultValue', defaultValue);
     const [valueRadio, setValueRadio] = useState(defaultValue);
+
     const onChangeRadio = (event) => {        
         setValueRadio(event.target.value);
         onChange(event.target.value);
-        console.log('event.target.value', event.target.value);
+        console.log('event.target.value', event);
+        // console.log('valueRadio', valueRadio);
     }
+    
 
     return (
-        <div className={orientation === "horizontal" ? "c-form-radio horizontal" : "c-form-radio vertical"}>
+        <div className="c-form-radio" name={name}>
             {
                 value.map( (item, index) => {
                     return (
-                        <div className="c-form-radio__item" key={`${index}-${index}`}>
+                        <div className="c-form-radio__item" key={`${item.value}-${index}`}>
                             <div className="c-radio">
                                 <input
                                     type="radio"
                                     name={name}
                                     checked={valueRadio === item.value}
                                     id={`${item.value}-${index}`}
-                                    onChange={onChangeRadio}
+                                    onChange={(e) => onChangeRadio(e)}
                                     ref={ref}
                                     value={item.value}
                                 />
                                 <label htmlFor={`${item.value}-${index}`}>{item.name}</label>
-                                {
-                                    item.workTime &&
-                                    <div className="c-radio__text">{item.workTime}</div>
-                                }
+                                
                             </div>
                             
                         </div>
@@ -45,6 +46,6 @@ function Radio({value, onChange, defaultValue, orientation, control, name, check
             }
         </div>
     )
-}
+})
 
-export default Radio;
+export default RadioTest;

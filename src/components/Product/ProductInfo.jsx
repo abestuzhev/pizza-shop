@@ -11,7 +11,7 @@ const ProductInfo = () => {
 
     return (
         <>
-        {
+        {items &&
             items.map((elem, index) => {
                 console.log(elem.id);
                 if(elem.id === +id) {

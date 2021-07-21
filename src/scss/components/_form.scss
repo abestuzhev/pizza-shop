@@ -50,7 +50,44 @@
             
         }
     }
+
+    &-radio {
+        
+
+        &.horizontal {
+            display: flex;
+            justify-content: flex-start;
+
+            .c-form-radio__item {
+                width: 33.333em;
+                padding: 0 10px;
+            }
+        }
+
+        &__item {
+            margin-bottom: 10px;
+        }
+    }
+
+    &-tab {
+        margin-bottom: 14px;
+        &__link {
+            background: #f3f3f3;
+            border-radius: 8px;
+            box-shadow: none;
+            cursor: pointer;
+            display: inline-flex;
+            margin-right: 11px;
+            padding: 9px;
+
+            &.active {
+                box-shadow: 0 2px 4px 0 rgba(94, 94, 94, .1), 0 3px 14px 0 rgba(0, 0, 0, .1);
+                background-color: #fff;
+            }
+        }
+    }
 }
+
 
 .c-input {
     border-radius: 8px;
@@ -140,7 +177,7 @@
 }
 
 .c-label {
-
+    padding-left: 10px;
 }
 
 .c-checkbox {
@@ -149,6 +186,47 @@
 
 .c-radio {
     
+    
+
+    input {
+        display: none;
+        cursor: pointer;
+
+        &:checked + label {
+            &::after {
+                content: '';
+                position: absolute;
+                left: 5px;
+                top: 5px;
+                width: 9px;
+                height: 9px;
+                background-color: #fe1e1e;
+                border-radius: 100px;
+            }
+        }
+    }
+
+    label {
+        padding-left: 28px;
+        position: relative;
+        cursor: pointer;
+        font-size: 16px;
+
+        &::before {
+            content: '';
+            border-radius: 100px;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #fe1e1e45;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    &__text {
+        padding-left: 27px;
+    }
 }
 
 .c-btn {

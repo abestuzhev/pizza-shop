@@ -7,6 +7,7 @@
 body {
   // background-color: $background;
   // background-color: #fff4d6;
+  overflow-y: scroll;
 }
 
 
@@ -337,12 +338,19 @@ body {
   align-items: flex-start;
   flex-flow: row nowrap;
 
+
   &-form {
     width: 60%;
   }
 
   &-order {
     width: 40%;
+  }
+
+  &-title {
+    font-size: 34px;
+    margin-bottom: 30px;
+    font-weight: 700;
   }
 }
 
