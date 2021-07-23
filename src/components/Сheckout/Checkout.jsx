@@ -1,11 +1,27 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useForm, Controller  } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Radio from './Radio';
 import RadioTest from './RadioTest';
 
+import deliveryZone from "./../../assets/data/deliveryZone.geojson"
+
 const Checkout = () => {
+
+  useEffect(()=> {
+    console.log('start query...');
+    try{
+        fetch(deliveryZone, {
+            dataType: 'json',
+        }).then( result => result.json())
+        .then(data => console.log(data));
+    }catch(e){
+        console.log(e);
+    }
+
+  }, [])
 
 
   const user = {
