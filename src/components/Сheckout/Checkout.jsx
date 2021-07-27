@@ -4,11 +4,14 @@ import { useState } from 'react';
 import { useForm, Controller  } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Radio from './Radio';
-import RadioTest from './RadioTest';
+import {Route, useHistory} from "react-router-dom";
+import Modal from "./../Modal";
 
 import deliveryZone from "./../../assets/data/deliveryZone.geojson"
 
 const Checkout = () => {
+
+  const history = useHistory();
 
   useEffect(()=> {
     console.log('start query...');
@@ -33,7 +36,9 @@ const Checkout = () => {
 
   // ---------------------------------------------------
 
-  
+  const [bonusType, setBonusType] = useState("promocode")
+
+  // ---------------------------------------------------
   const typeDelivery = [
     {type:"delivery", name: "Доставка"},
     {type:"pickup", name: "Самовывоз"}
@@ -53,12 +58,13 @@ const Checkout = () => {
       <div className="wrapper">
         <div className="content">
           <div className="container">
+          <div className="checkout-title">Заказ {deliveryType === "delivery" ? "на доставку" : "на самовывоз" }</div>
+
             <div className="checkout">
               <div className="checkout-form">
                 <form className="c-form" action="" onSubmit = {handleSubmit(onSubmit)}>
                   <div className="c-form-box">
                     
-                    <div className="checkout-title">Заказ {deliveryType === "delivery" ? "на доставку" : "на самовывоз" }</div>
                     <div className="c-form-groupe">
                       <div className="c-form-title">Данные гостя</div>
                       <div className="c-form-grid">
@@ -86,7 +92,7 @@ const Checkout = () => {
                               defaultValue={user.phone}
                               placeholder="+7 950-660-26-64"
                             />
-                            <div className="c-input-base__link">Изменить</div>
+                            <Link to="/checkout/phone" className="c-input-base__link">Изменить</Link>
                           </div>
                         </div>
                       </div>
@@ -119,11 +125,12 @@ const Checkout = () => {
                                   defaultValue={user.address}
                                   placeholder="Введите адрес доставки"
                                 />
-                                <div className="c-input-base__link">Изменить</div>
+                                <Link to="/checkout/address" className="c-input-base__link">Изменить</Link>
                               </div>
                             </div>
                           : <div className="c-form-tab__body">
-                              <Controller
+                            <div className="c-form-adition">
+                            <Controller
                                 control={control}
                                 name="deliveryPoint"
                                 render={({
@@ -145,6 +152,9 @@ const Checkout = () => {
                                   />
                                 )}
                               />
+
+                            </div>
+                              
                           </div>
                         }
                       </div>
@@ -162,43 +172,85 @@ const Checkout = () => {
                                 defaultValue={user.timeDelivery}
                                 placeholder="Как можно скорее"
                               />
-                              <div className="c-input-base__link">Изменить</div>
+                              <Link to="/checkout/time" className="c-input-base__link">Изменить</Link>
                             </div>
                           </div>
                           <div className="c-form-grid__col">
-                          <div className="c-input-base">
-                              <label htmlFor="">Промокод</label>
 
-                              <input
-                                type="text"
-                                defaultValue=""
-                                placeholder=""
-                              />
-                              <div className="c-input-base__link">Применить</div>
-                              <div className="c-input-base__link">Использовать бонусы</div>
+                            <div className="c-form-checkbox">
+                              <div className="c-form-checkbox__item">
+                                <div className="c-checkbox">
+
+                                  <input 
+                                    name="noCall" 
+                                    type="checkbox" 
+                                    {...register('noCall')} 
+                                    id="noCall" 
+                                    />
+                                  <label htmlFor="noCall">Не перезванивать</label>
+                                  
+                                </div>
+                              </div>
+                              <div className="c-form-checkbox__item">
+                                <div className="c-checkbox">
+
+                                  <input 
+                                    name="contactlessDelivery" 
+                                    type="checkbox" 
+                                    {...register('contactlessDelivery')} 
+                                    id="contactlessDelivery" 
+                                    />
+                                  <label htmlFor="contactlessDelivery">Бесконтактная доставка</label>
+                                  
+                                </div>
+                              </div>                              
                             </div>
                           </div>
+                          
                         </div>
                       </div>
                     </div>
-                    <div className="c-form-groupe">
-                    <div className="c-form-title">Бонусы</div>
+                    <div className="c-form-groupe c-form-groupe-adition">
+                      <div className="c-form-title">Бонусы и скидки</div>
                       <div className="c-form-item">
-                        <div className="c-form-grid">
-                          <div className="c-form-grid__col">
-                            <div className="c-input-base">
-                              <label htmlFor="">Промокод</label>
-
-                              Списать 15 бонусов 
-                              <div className="c-input-base__link">Применить</div>
-                              <div className="c-input-base__link">Использовать бонусы</div>
-                            </div>
+                        {
+                          bonusType === "promocode"
+                          ? <div className="c-input-base c-input-base--bonus">
+                          <label htmlFor="">Промокод</label>
+                          <div className="c-input-box">
+                            <input
+                              type="text"
+                              className="c-input-round"
+                            />
+                            <button className="">Применить</button>
                           </div>
-                            
-                          </div>
-                          <div className="c-form-grid__col">
                           
+                          <div className="c-input-base__link" onClick={(() => setBonusType("bonus"))}>Использовать бонусы</div>
                         </div>
+                        : <div className="c-input-base c-input-base--bonus">
+                        <label htmlFor="">Списание бонусов</label>
+                        <div className="c-input-box">
+                        <div className="c-form-checkbox">
+                              <div className="c-form-checkbox__item">
+                                <div className="c-checkbox">
+
+                                  <input 
+                                    name="bonus" 
+                                    type="checkbox" 
+                                    {...register('bonus')} 
+                                    id="bonus" 
+                                    />
+                                  <label htmlFor="bonus">Списать 15 бонусов</label>
+                                  
+                                </div>
+                              </div>                              
+                            </div>
+                        </div>
+                        
+                        <div className="c-input-base__link" onClick={(() => setBonusType("promocode"))}>Использовать промокод</div>
+                      </div>
+                        }
+                        
                       </div>
                     </div>
 
@@ -244,7 +296,45 @@ const Checkout = () => {
                 </form>
               </div>
               <div className="checkout-order">
-                <div className="checkout-order__list">
+                <div className="c-form-title">Состав заказа</div>
+                <div className="checkout-order-list">
+                  <div className="checkout-order-list__item">
+                    <div className="checkout-order-card">
+                      <div className="checkout-order-card__body">
+                        <div className="checkout-order-card__title">Пицца "Цезарь"</div>
+                        <div className="checkout-order-card__subtitle">Средняя 28 см</div>
+                      </div>
+                      <div className="checkout-order-card-price">
+                        <div className="checkout-order-card-price__num">450</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="checkout-order-list__item">
+                    <div className="checkout-order-card">
+                      <div className="checkout-order-card__body">
+                        <div className="checkout-order-card__title">Пицца "Сырная курочка"</div>
+                        <div className="checkout-order-card__subtitle">Большая 35 см</div>
+                      </div>
+                      <div className="checkout-order-card-price">
+                        <div className="checkout-order-card-price__num">660</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="checkout-order__footer">
+                  <div className="checkout-order-sale">
+                    <div className="checkout-order-sale__text">Скидка</div>
+                    <div className="checkout-order-sale__sum">200</div>
+                  </div>
+                  <div className="checkout-order-total">
+                    <div className="checkout-order-total__text">Сумма заказа</div>
+                    <div className="checkout-order-total__body">                      
+                    <div className="checkout-order-total__old">1450</div>
+                      <div className="checkout-order-total__sum">1150</div>
+                    </div>
+                    
+                  </div>
 
                 </div>
               </div>
@@ -253,6 +343,40 @@ const Checkout = () => {
           </div>
         </div>
       </div>
+    
+      <Route
+          path="/checkout/address"
+          children={({match}) => {
+              return (
+                  Boolean(match) &&
+                  <Modal history={history} size="small" closeBtn={true}>
+                      Введите свой адрес
+                  </Modal>
+              )
+          }}
+        />
+        <Route
+          path="/checkout/phone"
+          children={({match}) => {
+              return (
+                  Boolean(match) &&
+                  <Modal history={history} size="small" closeBtn={true}>
+                      Подтвердите свой номер телефона
+                  </Modal>
+              )
+          }}
+        />
+        <Route
+          path="/checkout/time"
+          children={({match}) => {
+              return (
+                  Boolean(match) &&
+                  <Modal history={history} size="small" closeBtn={true}>
+                      Укажите время доставки
+                  </Modal>
+              )
+          }}
+        />
     </>
   )
 }

@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 
 function Radio({value, onChange, defaultValue, orientation, control, name, checked, ref}) {
 
-    console.log(`orientation ${name}`, orientation);
-    console.log('name', name);
+    // console.log(`orientation ${name}`, orientation);
+    // console.log('name', name);
     const [valueRadio, setValueRadio] = useState(defaultValue);
     const onChangeRadio = (event) => {        
         setValueRadio(event.target.value);
         onChange(event.target.value);
-        console.log('event.target.value', event.target.value);
+        // console.log('event.target.value', event.target.value);
     }
 
     return (

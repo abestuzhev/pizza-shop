@@ -53,11 +53,11 @@ function App() {
     
 
       
-      <Route path="/cart" exact>
+      <Route path="/cart">
         <Cart /> 
       </Route>
 
-      <Route path="/checkout" exact>
+      <Route path="/checkout">
         <Checkout /> 
       </Route>
       
@@ -73,6 +73,8 @@ function App() {
               )
           }}
         />
+
+      
 
         <Route path="/" exact>
           <Home /> 
