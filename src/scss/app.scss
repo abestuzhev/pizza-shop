@@ -448,6 +448,23 @@ body {
     margin-bottom: 30px;
     font-weight: 700;
   }
+
+  &-address {
+
+    /*dadata style*/
+    .react-dadata__suggestions {
+
+    }
+
+    .react-dadata--highlighted{
+      color:#ed1c24;
+    }
+
+    .react-dadata__input:focus {
+      border-color: #ed1c24;
+    }
+  }
+
 }
 
 

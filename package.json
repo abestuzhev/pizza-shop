@@ -54,6 +54,7 @@
     "prompts": "2.4.0",
     "react": "^17.0.1",
     "react-app-polyfill": "^2.0.0",
+    "react-dadata": "^2.9.3",
     "react-dev-utils": "^11.0.4",
     "react-dom": "^17.0.1",
     "react-hook-form": "^7.11.0",
@@ -74,7 +75,8 @@
     "webpack": "4.44.2",
     "webpack-dev-server": "3.11.0",
     "webpack-manifest-plugin": "2.2.0",
-    "workbox-webpack-plugin": "5.1.4"
+    "workbox-webpack-plugin": "5.1.4",
+    "ymaps": "^0.2.1"
   },
   "scripts": {
     "start": "node scripts/start.js",

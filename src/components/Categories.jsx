@@ -16,6 +16,8 @@ const Categories = React.memo(({items}) => {
     }
 
 
+
+
     return (
         <>
         <div className="categories">

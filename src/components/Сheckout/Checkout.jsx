@@ -8,23 +8,24 @@ import {Route, useHistory} from "react-router-dom";
 import Modal from "./../Modal";
 
 import deliveryZone from "./../../assets/data/deliveryZone.geojson"
+import Address from './Address';
 
 const Checkout = () => {
 
   const history = useHistory();
 
-  useEffect(()=> {
-    console.log('start query...');
-    try{
-        fetch(deliveryZone, {
-            dataType: 'json',
-        }).then( result => result.json())
-        .then(data => console.log(data));
-    }catch(e){
-        console.log(e);
-    }
+  // useEffect(()=> {
+  //   console.log('start query...');
+  //   try{
+  //       fetch(deliveryZone, {
+  //           dataType: 'json',
+  //       }).then( result => result.json())
+  //       .then(data => console.log(data));
+  //   }catch(e){
+  //       console.log(e);
+  //   }
 
-  }, [])
+  // }, [])
 
 
   const user = {
@@ -350,7 +351,7 @@ const Checkout = () => {
               return (
                   Boolean(match) &&
                   <Modal history={history} size="small" closeBtn={true}>
-                      Введите свой адрес
+                      <Address />
                   </Modal>
               )
           }}
