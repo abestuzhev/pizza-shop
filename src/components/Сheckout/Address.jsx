@@ -8,42 +8,44 @@ import ymaps from 'ymaps';
 
 const Address = () => {
     const [address, setAddress] = useState(null);
-    console.log(address);
+    const [addressInfo, setAddressInfo] = useState("");
+    console.log("address", address);
     const key = "18b47ca40130c3449457d672a70a60ae6fc08a41";
-    
-    const coords = new Array(address?.data.geo_lat, address?.data.geo_lon);
-    console.log("coords", coords);
-    
 
     useEffect(async () => {
 
+        if(address) {
+
+            const coords = new Array(address?.data.geo_lon, address?.data.geo_lat);
+            console.log("coords", coords);
+            const jsonGeo = await axios.get(deliveryZone)
+
+            ymaps
+            .load()
+            .then( async (maps) => {
+
+                const myMap = new maps.Map('map', {
+                    center: [64.54397171347543,40.56680977290074],
+                    zoom: 12
+                });
+                const deliveryZones = maps.geoQuery(jsonGeo.data).addToMap(myMap);
+                
+                const polygon = deliveryZones.searchContaining(coords).get(0);
+                
+                if(polygon) {
+                    const textPoligon = polygon.properties.get('description');
+                    setAddressInfo(textPoligon);
+                    console.log("нашел полигон");
+                }else {
+                    setAddressInfo("Адрес не входит в зону доставки");
+                    console.log("Не нашел полигона");
+                }
+                
+            })
+            .catch(error => console.log('Failed to load Yandex Maps', error));
+
+        }
         
-
-        const jsonGeo = await axios.get(deliveryZone)
-        // const jsonGeo = await axios.get("https://sandbox.api.maps.yandex.net/examples/ru/2.1/delivery_zones/data.geojson")
-
-        // var deliveryZones = ymaps.geoQuery(jsonGeo.data.features)
-        // console.log("deliveryZones", deliveryZones);
-        console.log("jsonGeo", jsonGeo.data.features);
-
-
-        ymaps
-        .load()
-        .then(maps => {
-            const mapDelivery = new maps.Map('map', {
-                center: [64.54397171347543,40.56680977290074],
-                zoom: 12
-            });
-            const deliveryZones = maps.geoQuery(jsonGeo.data.features);
-            // const deliveryZones = maps.geoQuery(jsonGeo.data.features);
-            console.log("deliveryZones", deliveryZones);
-            const polygon = deliveryZones.searchContaining(coords);
-            // const polygon = deliveryZones.searchContaining(maps.geocode(["64.485997", "40.737556"])).get(0);
-            console.log("polygon", polygon);
-
-            
-        })
-        .catch(error => console.log('Failed to load Yandex Maps', error));
 
     }, [address]);
     
@@ -58,6 +60,11 @@ const Address = () => {
 
                 <AddressSuggestions filterLocations={{city: "Архангельск"}} token={key} value={address} onChange={setAddress} />
             </div>
+            {
+                address &&
+                <div className="checkout-address__text">{addressInfo}</div>
+            }
+           
             <div id="map"></div>
 
         </div>
